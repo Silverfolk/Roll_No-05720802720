@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Test</title>
+</head>
+<body>
+  <script>
+    const fetch = require('fetch');
+
+    const getNumbers = async (urls) => {
+      const responses = await Promise.all(urls.map(url => fetch(url)));
+
+      const numbers = responses.map(response => response.json());
+      return numbers;
+    };
+
+    const urls = [
+      'http://20.244.56.144/numbers/primes',
+      'http://20.244.56.144/numbers/fibo',
+      'http://20.244.56.144/numbers/odd'
+    ];
+
+    const numbers = await getNumbers(urls);
+
+    console.log(numbers);
+  </script>
+</body>
+</html>
